@@ -1,0 +1,145 @@
+.App {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+header {
+  background-color: #363636;
+  color: #fff;
+  padding: 1rem;
+}
+
+header nav {
+  display: flex;
+  justify-content: center;
+}
+
+header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+}
+
+main {
+  padding: 2rem;
+}
+
+.hero-image {
+  background-image: url("https://images.unsplash.com/photo-1594073129478-9d88a9e0cc0e");
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-image h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-image button {
+  background-color: #fff;
+  color: #363636;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hero-image button:hover {
+  background-color: #eaeaea;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.services h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.services ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.services li {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin: 1rem;
+  padding: 1rem;
+  width: 300px;
+}
+
+.services li h3 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.services li p {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.services li button {
+  background-color: #363636;
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.services li button:hover {
+  background-color: #000;
+}
+
+.about {
+  margin: 2rem 0;
+}
+
+.about h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.about p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.contact {
+  margin: 2rem 0;
+}
+
+.contact h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.contact p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+footer {
+  background-color: #363636;
+  color: #fff;
+  padding: 1rem;
+}
