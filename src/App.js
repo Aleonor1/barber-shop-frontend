@@ -1,17 +1,8 @@
 import "./App.css";
-import About from "./Components/About";
-import Home from "./Components/Home";
+import AppointmentSchedular from "./Components/AppointmentSchedular/AppointmentSchedular";
 import Register from "./Components/Register/Register";
-import Testimonial from "./Components/Testimonials";
-import Work from "./Components/Work";
 import FirstPage from "./FirstPage";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  BrowserRouter,
-  Routes,
-} from "react-router-dom";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -19,6 +10,7 @@ function App() {
       <Routes>
         <Route index element={<FirstPage />} />
         <Route path="register" element={<Register />} />
+        <Route path="appointment" element={<AppointmentSchedular />} />
       </Routes>
     </BrowserRouter>
   );

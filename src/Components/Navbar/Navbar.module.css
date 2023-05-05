@@ -67,8 +67,8 @@ nav {
 }
 .home-bannerImage-container {
   position: absolute;
-  top: -100px;
-  right: -170px;
+  top: -200px;
+  right: -350px;
   z-index: -2;
   max-width: 700px;
 }
@@ -212,8 +212,8 @@ nav {
   color: #585858;
 }
 /* .footer-section-one {
-  border: 2px solid blue;
-} */
+    border: 2px solid blue;
+  } */
 .footer-section-two {
   flex: 1;
   display: flex;
@@ -316,7 +316,7 @@ nav {
     font-size: 1rem;
   }
   .home-bannerImage-container {
-    max-width: 600px;
+    max-width: 1200px;
   }
 }
 @media (max-width: 800px) {

@@ -16,7 +16,7 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import BookOnlineIcon from "@mui/icons-material/BookOnline";
 import LoginIcon from "@mui/icons-material/Login";
 import { useState } from "react";
-import { Login } from "@mui/icons-material";
+import "../App.css";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);

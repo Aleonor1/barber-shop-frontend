@@ -5,8 +5,6 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 
-const REGISTER_URL = "/clients";
-
 const Register = () => {
   const navigate = useNavigate();
 
@@ -115,7 +113,6 @@ const Register = () => {
           password: password,
           username: username,
           experience: "Junior",
-          username: "{{$randomUserName}}",
         }),
         {
           headers: {
