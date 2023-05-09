@@ -1,26 +1,41 @@
 import * as React from "react";
+import { useState } from "react";
+
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/joy/Button";
 import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 import classes from "./BarberCard.module.css";
+import AppointmentMenu from "../AppointmentMenu/AppointmentMenu";
 
 function BarberCard(props) {
-  const [expanded, setExpanded] = React.useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleMenuOpen = () => {
+    setMenuOpen(true);
   };
 
-  const { title, date, description, image, rating } = props;
+  const handleMenuClose = () => {
+    setMenuOpen(false);
+  };
 
+  const handleAppointmentSelect = (appointment) => {
+    setSelectedAppointment(appointment);
+    handleMenuClose();
+  };
+
+  const { title, date, description, image, rating, appointments } = props;
+  const appointmentsFormated = appointments?.data?.map((appointment) => {
+    return { id: appointment.id, time: appointment.from };
+  });
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader title={title} subheader={date} />
-
+      <CardHeader title={title} subheader={date} sx={{ textAlign: "center" }} />
       <CardMedia component="img" height="194" image={image} alt={title} />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -46,7 +61,24 @@ function BarberCard(props) {
             <p>{rating}</p>
           </Box>
         </Box>
+        <Button
+          variant="solid"
+          size="sm"
+          color="warning"
+          sx={{ ml: "auto", fontWeight: 600 }}
+          right="0"
+          onClick={() => handleMenuOpen()}
+        >
+          Book
+        </Button>
       </CardContent>
+      {menuOpen && (
+        <AppointmentMenu
+          onClose={handleMenuClose}
+          appointments={appointmentsFormated}
+          // onSelect={handleAppointmentSelect}
+        />
+      )}
     </Card>
   );
 }

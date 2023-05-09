@@ -8,10 +8,12 @@ import "./App.css";
 const LandingPage = () => {
   return (
     <div className="App">
-      <Home />
-      <About />
-      <Work />
-      <Testimonial />
+      <div>
+        <Home />
+        <About />
+        <Work />
+        <Testimonial />
+      </div>
     </div>
   );
 };
