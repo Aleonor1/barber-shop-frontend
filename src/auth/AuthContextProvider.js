@@ -9,6 +9,7 @@ const initialState = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
+      localStorage.setItem("user", JSON.stringify(action.payload));
       return {
         isAuthenticated: true,
         user: action.payload,

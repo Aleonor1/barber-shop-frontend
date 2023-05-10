@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FormInput from "../../Components/FormInput/FormInput";
+import FormInput from "../FormInput/FormInput";
 import classes from "./Register.module.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";

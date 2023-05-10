@@ -49,7 +49,9 @@ function ResponsiveAppBar() {
   const handleLogOutOnClick = () => {
     logout();
   };
-  const handleProfileOnClick = () => {};
+  const handleProfileOnClick = () => {
+    navigate("/profile");
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);

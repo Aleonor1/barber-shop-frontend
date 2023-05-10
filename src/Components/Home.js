@@ -1,7 +1,6 @@
 import React from "react";
 import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/za-barbershop-background-image2.png";
-import Navbar from "./Navbar";
 import { useNavigate } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
