@@ -1,6 +1,15 @@
 import React from "react";
+import { useState, useContext } from "react";
+import axios from "../../api/axios";
+import classes from "./Login.module.css";
+import Alert from "@mui/material/Alert";
+import FormInput from "../../Components/FormInput/FormInput";
+import AuthContext from "../../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
+import BannerImage from "../../Assets/za-barbershop-background-image2.png";
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const inputs = [
     {
       id: 1,
@@ -19,48 +28,69 @@ const Login = () => {
       type: "password",
       placeholder: "Password",
       errorMessage:
-        "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+        "Password should be 8-20 characters anhandleSubmitd include at least 1 letter, 1 number and 1 special character!",
       label: "Password",
       pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       required: true,
     },
   ];
 
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+  });
+
+  const [showPopUp, setShowPopUp] = useState(false);
+
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const { username, password } = values;
-        const response = await axios.post(
-          "/clients/login",
-          JSON.stringify({
-            password: password,
-            username: username,
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-            },
-            withCredentials: false,
-          }
-        );
+  let navigate = useNavigate();
 
-        console.log(JSON.stringify(response));
-        if (response.status == 201) {
-          setShowPopUp(true);
+  const { login } = useContext(AuthContext);
+
+  // const handleRedirectToRegister = () => {
+  //   navigate("/register");
+  // };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { username, password } = values;
+      const response = await axios.post(
+        "/clients/login",
+        JSON.stringify({
+          username: username,
+          password: password,
+        }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          withCredentials: false,
         }
-      } catch (err) {
-        console.log(err.message);
+      );
+
+      if (response.status == 200) {
+        const user = response.data.user;
+        login(user);
+        setShowPopUp(true);
+        navigate("/");
       }
-    };
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (
     <div>
+      <Navbar />
       <div className={classes.app}>
+        <div>
+          <img src={BannerImage} alt="" />
+        </div>
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
           {inputs.map((input) => (
@@ -72,6 +102,7 @@ const Login = () => {
             />
           ))}
           <button>Submit</button>
+          <a href="/register">Not a user? Register!</a>
         </form>
       </div>
       {showPopUp && (

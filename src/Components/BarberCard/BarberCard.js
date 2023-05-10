@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-
+import { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,13 +11,23 @@ import Box from "@mui/material/Box";
 import StarIcon from "@mui/icons-material/Star";
 import classes from "./BarberCard.module.css";
 import AppointmentMenu from "../AppointmentMenu/AppointmentMenu";
+import AuthContext from "../../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function BarberCard(props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const navigate = useNavigate();
+
+  const { state } = useContext(AuthContext);
+  const { isAuthenticated } = state;
 
   const handleMenuOpen = () => {
-    setMenuOpen(true);
+    if (isAuthenticated) {
+      setMenuOpen(true);
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleMenuClose = () => {
@@ -33,6 +43,7 @@ function BarberCard(props) {
   const appointmentsFormated = appointments?.data?.map((appointment) => {
     return { id: appointment.id, time: appointment.from };
   });
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader title={title} subheader={date} sx={{ textAlign: "center" }} />
@@ -76,7 +87,6 @@ function BarberCard(props) {
         <AppointmentMenu
           onClose={handleMenuClose}
           appointments={appointmentsFormated}
-          // onSelect={handleAppointmentSelect}
         />
       )}
     </Card>

@@ -27,8 +27,8 @@ const Work = () => {
         <p className="primary-subheading">Work</p>
         <h1 className="primary-heading">How It Works</h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+          At our barber shop, we pride ourselves on providing a seamless and
+          straightforward experience for our clients
         </p>
       </div>
       <div className="work-section-bottom">

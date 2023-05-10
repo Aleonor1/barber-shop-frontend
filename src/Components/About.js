@@ -17,14 +17,13 @@ const About = () => {
           Let us take care of your look and you won't regreat it!
         </h1>
         <p className="primay-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua
-        </p>
-        <p className="primay-text">
-          Sit amet commodo nulla facilisi nullam vehicula ipsum a. Tempor nec
-          feugiat nisl pretium fusce id velit ut. Sit amet consectetur
-          adipiscing elit ut aliquam purus. Pulvinar neque laoreet suspendisse
-          interdum.
+          Welcome to our barber shop where we specialize in taking care of your
+          hair and grooming needs. Our experienced barbers are passionate about
+          their craft and are committed to giving you the best possible
+          experience. From classic haircuts to modern styles, we'll help you
+          find a look that suits your personality and lifestyle. Trust us to
+          take care of your look and you'll leave our shop feeling refreshed and
+          confident.
         </p>
 
         <div className="about-buttons-container">

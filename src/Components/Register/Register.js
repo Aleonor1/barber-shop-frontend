@@ -149,6 +149,7 @@ const Register = () => {
             />
           ))}
           <button>Submit</button>
+          <a href="/login">Already have a user? Log in!</a>
         </form>
       </div>
       {showPopUp && (

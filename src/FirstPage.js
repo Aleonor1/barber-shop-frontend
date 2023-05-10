@@ -4,11 +4,13 @@ import Home from "./Components/Home";
 import Testimonial from "./Components/Testimonials";
 import Work from "./Components/Work";
 import "./App.css";
+import Navbar from "./Components/Navbar";
 
 const LandingPage = () => {
   return (
-    <div className="App">
-      <div>
+    <div>
+      <Navbar />
+      <div className="App">
         <Home />
         <About />
         <Work />

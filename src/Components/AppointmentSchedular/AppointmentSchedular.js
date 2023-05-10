@@ -76,45 +76,48 @@ const AppointmentSchedular = () => {
   };
 
   return (
-    <div className={classes.App}>
-      <div className={classes.homeContainer}>
-        <Navbar />
-        <div className={classes.homeBannerContainer}>
-          <div className={"home-bannerImage-container"}>
-            <img src={BannerBackground} alt="" />
-          </div>
-        </div>
-        <div className={classes.container}>
-          <h1 className={classes.title}>Schedule Page</h1>
-          <div className={classes.inputs}>
-            <label htmlFor="date-picker">Select a Date:</label>
-            <input
-              type="date"
-              id="date-picker"
-              value={selectedDate}
-              onChange={(e) => handleDateChange(e.target.value)}
-            />
-          </div>
+    <div>
+      <Navbar />
 
-          {selectedDate && (
-            <>
-              <h3>Available Barbers:</h3>
-              <div className={classes.cardGrid}>
-                {availableBarbers?.map((barber) => (
-                  <BarberCard
-                    className={classes.barberCard}
-                    key={barber.dbBarber.id}
-                    title={`${barber.dbBarber.firstName} ${barber.dbBarber.lastName}`}
-                    date={barber.dbBarber.experience}
-                    description={barber.dbBarber.description}
-                    image={ProfilePic}
-                    rating={barber.dbBarber.rating}
-                    appointments={barber.freeBarberAppointments}
-                  />
-                ))}
-              </div>
-            </>
-          )}
+      <div className={classes.App}>
+        <div className={classes.homeContainer}>
+          <div className={classes.homeBannerContainer}>
+            <div className={"home-bannerImage-container"}>
+              <img src={BannerBackground} alt="" />
+            </div>
+          </div>
+          <div className={classes.container}>
+            <h1 className={classes.title}>Schedule Page</h1>
+            <div className={classes.inputs}>
+              <label htmlFor="date-picker">Select a Date:</label>
+              <input
+                type="date"
+                id="date-picker"
+                value={selectedDate}
+                onChange={(e) => handleDateChange(e.target.value)}
+              />
+            </div>
+
+            {selectedDate && (
+              <>
+                <h3>Available Barbers:</h3>
+                <div className={classes.cardGrid}>
+                  {availableBarbers?.map((barber) => (
+                    <BarberCard
+                      className={classes.barberCard}
+                      key={barber.dbBarber.id}
+                      title={`${barber.dbBarber.firstName} ${barber.dbBarber.lastName}`}
+                      date={barber.dbBarber.experience}
+                      description={barber.dbBarber.description}
+                      image={ProfilePic}
+                      rating={barber.dbBarber.rating}
+                      appointments={barber.freeBarberAppointments}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
