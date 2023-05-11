@@ -52,6 +52,9 @@ function ResponsiveAppBar() {
   const handleProfileOnClick = () => {
     navigate("/profile");
   };
+  const handleAppointmentsOnClick = () => {
+    navigate("/appointments");
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -181,6 +184,13 @@ function ResponsiveAppBar() {
               >
                 <MenuItem key="profile" onClick={handleProfileOnClick}>
                   <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+
+                <MenuItem
+                  key="appointments"
+                  onClick={handleAppointmentsOnClick}
+                >
+                  <Typography textAlign="center">Appointments</Typography>
                 </MenuItem>
 
                 <MenuItem key="logout" onClick={handleLogOutOnClick}>
