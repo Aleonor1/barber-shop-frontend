@@ -39,12 +39,17 @@ const AppointmentMenuItem = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const AppointmentMenu = ({ onClose, appointments }) => {
+const AppointmentMenu = ({ onClose, appointments, date, barberId }) => {
   const [isHourSelected, setIsHourSelected] = useState(false);
+  const [appointmentHour, setAppointmnetHour] = useState();
+  const [appointmentDate, setAppointmnetDate] = useState();
+
   const navigate = useNavigate();
 
   const onSelect = (appointment) => {
     setIsHourSelected(true);
+    setAppointmnetDate(appointment.date);
+    setAppointmnetHour(appointment.time);
     // navigate("/");
   };
 
@@ -67,8 +72,9 @@ const AppointmentMenu = ({ onClose, appointments }) => {
       )}
       {isHourSelected && (
         <AppointmentSelector
-          date={123}
-          time={123}
+          date={date}
+          barberId={barberId}
+          time={appointmentHour}
           setIsHourSelected={setIsHourSelected}
         />
       )}

@@ -19,7 +19,7 @@ const Yellow = styled(CardHeader)({
 });
 
 const AppointmentCard = ({ appointment, onDelete }) => {
-  const { service, date, barber, price, from } = appointment;
+  const { service, date, barber, price, from } = appointment.appointment;
   const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
   let navigate = useNavigate();
 
@@ -61,7 +61,9 @@ const AppointmentCard = ({ appointment, onDelete }) => {
   return (
     <Root>
       <Yellow
-        title={`Appointment with ${barber?.firstName + " " + barber?.lastName}`}
+        title={`Appointment with ${
+          appointment.barber?.firstName + " " + appointment.barber?.lastName
+        }`}
         subheader={
           //To do add query for barber
           isPastAppointment ? "Past Appointment" : "Upcoming Appointment"

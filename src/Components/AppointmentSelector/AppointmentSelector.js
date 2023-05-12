@@ -8,17 +8,22 @@ import {
   Button,
 } from "@mui/material";
 import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 
 function AppointmentSelector(props) {
-  const { date, time, setIsHourSelected } = props;
+  const { date, time, setIsHourSelected, barberId } = props;
+  const [errorMessages, setErrorMessages] = useState("");
+  const [succesMessage, setSuccesMessage] = useState("");
 
   const [service, setService] = useState("");
+  let navigate = useNavigate();
 
   const handleClose = () => {
     setIsHourSelected(false);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (selectedDate, selectedTime, selectedService) => {
     try {
       const config = {
         headers: {
@@ -28,22 +33,40 @@ function AppointmentSelector(props) {
         withCredentials: false,
       };
 
-      await axios.post(
-        "/appointment",
+      const user = JSON.parse(localStorage.getItem("user"));
+      const date = new Date(selectedDate);
 
-        JSON.stringify({
-          from: "8:00",
-          to: "9:00",
-          month: 10,
-          clientId: "4",
-          barberId: "1",
-          service: "DIRECTORS_CUT",
-          day: 10,
-        }),
+      const payload = {
+        from: selectedTime,
+        to: selectedTime ? selectedTime + 1 : null,
+        date: date,
+        clientId: user.id.toString(),
+        barberId: barberId.toString(),
+        service: selectedService,
+      };
+
+      const response = await axios.post(
+        "/appointment",
+        JSON.stringify(payload),
         config
       );
+      console.log(response);
+      if (response.status === 201) {
+        setErrorMessages("");
+        setSuccesMessage("Appointment scheduled successfully!");
+
+        setTimeout(() => {
+          navigate("/appointments");
+        }, 3000);
+      }
     } catch (exception) {
-      console.log(exception);
+      if (exception?.response?.data.message) {
+        setErrorMessages(exception.response.data.message);
+      } else if (exception?.response?.data) {
+        setErrorMessages(exception.response.data);
+      } else {
+        setErrorMessages(exception.message);
+      }
     }
   };
 
@@ -90,9 +113,24 @@ function AppointmentSelector(props) {
             </MenuItem>
           ))}
         </TextField>
-        <Button onClick={handleSubmit} color="primary">
+        <Button
+          onClick={() => handleSubmit(date, time, service)}
+          color="primary"
+        >
           Submit
         </Button>
+        {errorMessages &&
+          (Array.isArray(errorMessages) ? (
+            errorMessages.map((error) => (
+              <Alert key={error} severity="error">
+                {error}
+              </Alert>
+            ))
+          ) : (
+            <Alert severity="error">{errorMessages}</Alert>
+          ))}
+
+        {succesMessage && <Alert severity="success">{succesMessage}</Alert>}
       </DialogContent>
     </Dialog>
   );

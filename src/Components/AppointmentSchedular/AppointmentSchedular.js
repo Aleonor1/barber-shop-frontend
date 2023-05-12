@@ -107,11 +107,13 @@ const AppointmentSchedular = () => {
                       className={classes.barberCard}
                       key={barber.dbBarber.id}
                       title={`${barber.dbBarber.firstName} ${barber.dbBarber.lastName}`}
-                      date={barber.dbBarber.experience}
+                      date={selectedDate}
+                      experience={barber.dbBarber.experience}
                       description={barber.dbBarber.description}
                       image={ProfilePic}
                       rating={barber.dbBarber.rating}
                       appointments={barber.freeBarberAppointments}
+                      barberId={barber.dbBarber.id}
                     />
                   ))}
                 </div>

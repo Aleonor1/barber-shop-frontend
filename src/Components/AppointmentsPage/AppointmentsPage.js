@@ -17,6 +17,8 @@ const FlexContainer = styled("div")({
 const AppointmentsPage = () => {
   const [appointments, setAppointments] = useState([]);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     const fetchAppointments = async () => {
       let response;
@@ -30,7 +32,7 @@ const AppointmentsPage = () => {
 
       try {
         response = await axios.get(
-          "clients/3/appointments",
+          `clients/${user.id}/appointments`,
           JSON.stringify({}),
           config
         );
@@ -38,18 +40,18 @@ const AppointmentsPage = () => {
         console.log(exception);
       }
 
-      const data = response.data;
-      setAppointments(data);
+      const appointments = response.data;
+      setAppointments(appointments);
     };
 
     fetchAppointments();
   }, []);
 
-  const pastAppointments = appointments.filter(
-    (appointment) => new Date(appointment.date) < new Date()
+  const pastAppointments = appointments?.filter(
+    (appointment) => new Date(appointment.appointment.date) < new Date()
   );
-  const upcomingAppointments = appointments.filter(
-    (appointment) => new Date(appointment.date) >= new Date()
+  const upcomingAppointments = appointments?.filter(
+    (appointment) => new Date(appointment.appointment.date) >= new Date()
   );
 
   return (

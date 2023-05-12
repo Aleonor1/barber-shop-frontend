@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 function BarberCard(props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [selectedBarber, setSelectedBarber] = useState(null);
   const navigate = useNavigate();
 
   const { state } = useContext(AuthContext);
@@ -39,14 +40,27 @@ function BarberCard(props) {
     handleMenuClose();
   };
 
-  const { title, date, description, image, rating, appointments } = props;
+  const {
+    title,
+    date,
+    description,
+    image,
+    rating,
+    appointments,
+    experience,
+    barberId,
+  } = props;
   const appointmentsFormated = appointments?.data?.map((appointment) => {
     return { id: appointment.id, time: appointment.from };
   });
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader title={title} subheader={date} sx={{ textAlign: "center" }} />
+      <CardHeader
+        title={title}
+        subheader={experience}
+        sx={{ textAlign: "center" }}
+      />
       <CardMedia component="img" height="194" image={image} alt={title} />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
@@ -87,6 +101,8 @@ function BarberCard(props) {
         <AppointmentMenu
           onClose={handleMenuClose}
           appointments={appointmentsFormated}
+          barberId={barberId}
+          date={date}
         />
       )}
     </Card>
